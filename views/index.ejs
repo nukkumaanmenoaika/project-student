@@ -1,0 +1,281 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<link href='https://fonts.googleapis.com/css?family=Manrope' rel='stylesheet'>
+    	<style>
+    		div {
+    			display: block;
+    		}
+    		
+    		body {
+    			align-items: center;
+    		}
+			.container {
+				font-family: "Manrope",sans-serif;
+			}
+			.container-fluid {
+				align-items: center;
+			}
+			.card {
+			    background-color: #fff;
+			    padding: 24px 32px 34px;
+			    box-shadow: 0 30px 30px 0 rgba(51, 51, 51, .14);
+			    margin-bottom: 1rem;
+			    margin: 50px 400px 50px 400px; 
+			}
+
+			#id_message {
+				height: 150px;
+			}
+
+    		.header {
+    			background: #d91842;
+                font-family: "Manrope",sans-serif;
+			    color: white;
+			    max-width: 100%;
+			    width: 100%;
+			    height: 70px;
+	    	}
+    		p {
+			    font-family: "Montserrat", sans-serif;
+			    width: 350px;
+    		}
+    		.dataForm {
+    			display: flex;
+    			flex-direction: column;
+    			align-items: center;
+    			margin-top: 20px;
+    		}
+    		.container {
+    			max-width: 100%;
+    		}
+
+    		.form-group {
+    			margin-bottom: 2rem;
+    		}
+
+    		.help-block {
+    			display: block;
+			    margin-top: 5px;
+			    margin-bottom: 10px;
+			    color: #737373;
+			    margin-top: 1.5rem;
+			    font-size: .915em;
+			}
+
+			.h4 {
+				line-height: 1.4;
+    			color: #444850;
+			}
+			.form-title {
+    			margin: 0 0 1.5rem;
+			}
+			
+			.invalid-feedback {
+            	display: none; /* Скрыть по умолчанию */
+	        }
+	        .form-control:invalid {
+	            border-color: #dc3545; /* Красная рамка для невалидных полей */
+	            border-radius: 10px;
+	        }
+	        .form-control:invalid ~ .invalid-feedback {
+	            display: block; /* Показать сообщение об ошибке */
+	        }
+	        .form-control:valid {
+	            border-color: #28a745; /* Зеленая рамка для валидных полей */
+	            border-width: 2px;
+	        }
+
+			img {
+				height: 200px;
+				width: 200px;
+				align-self: end;
+			}
+
+			@media screen and (max-width: 1580px){
+				.card  {
+					margin: 50px 200px 50px 200px; 
+				}
+			}
+
+			@media screen and (max-width: 1286px){
+				.card  {
+					margin: 50px 100px 50px 100px; 
+				}
+			}
+			@media screen and (max-width: 1026px){
+				.card  {
+					margin: 50px 50px 50px 50px; 
+				}
+			}
+
+			@media screen and (max-width: 830px){
+				.card  {
+					margin: 50px 25px 50px 25px; 
+				}
+			}
+    	</style>
+	</head>
+	 <body>
+	 	<header>
+	 		<div class="header">
+	            <div class="text-center fs-1">Оставьте ваше обращение</div>
+            </div>
+	 	</header>
+        <div class="container-fluid wrapper">
+        	 
+             <div class="card card_page">
+				<img src="https://chita.top-academy.ru/dist/images/logo/step_logo_rus.svg">
+             	<form id="myForm" method="post" action="/check-form">
+             		<hr class="form-group">					
+             		<h4 class="form-title">Личные данные</h4>
+					<div class="row form-group">
+						<div class="col-md-3">
+							<div>
+								<div>
+									<label for="inputName" class="form-label">Имя</label>
+									<input id="inputName" name="name" class="form-control wid" type="text" required></input>
+								</div>			
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group has-error">
+								<div>
+									<label  for="inputSurname" class="form-label">Фамилия</label>
+									<input id="inputSurname" name="surname" class="form-control wid" type="text" required></input>
+								</div>		
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group has-error" >
+								<div>
+									<label for="inputPatronymic" class="form-label">Отчество</label>
+									<input id="inputPatronymic" name="patronymic" class="form-control wid" type="text" required></input>
+								</div>				
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div>
+								<div>
+									<label for="inputGroup" class="form-label">Группа</label>
+									<input id="inputGroup" name="groupStud" class="form-control wid" type="text" required></input>
+								</div>			
+							</div>
+						</div>
+						<div class="help-block">
+							Заполните личные данные для того, чтобы мы могли вас идентифицировать.
+						</div>
+					</div>
+
+					
+					<hr class="form-group">
+					<h4 class="form-title">Обращение</h4>
+					<div class="col-md-4">
+							<div class="form-group has-error">
+								<div>
+									<label  for="inputTheme" class="form-label" >Тема обращения</label>
+									<input id="inputTheme" name="theme" class="form-control wid" type="text" required></input>
+								</div>		
+							</div>
+						</div>
+					<div class="row form-group">
+						<div class="col">
+							<label for="id_message">Содержание обращения <span class="required-field" aria-hidden="true"></span></label>
+						<textarea name="message" id="id_message" maxlength="10000" class="form-control" required></textarea>
+						<div class="help-block">
+							Поле текста обращения имеет техническое ограничение в 10 000 символов (с пробелами). Если размер вашего обращения превышает указанное ограничение, прикрепите его в виде отдельного файла, а в текстовом поле кратко укажите суть обращения.
+						</div>
+						</div>
+						
+					</div>
+
+					<hr class="form-group">
+             		<h4 class="form-title">Контактные данные</h4>
+					<div class="row form-group">
+						<div class="col-md-4">
+							<div>
+								<div>
+									<label for="inputEmail" class="form-label">Адрес электронной почты</label>
+									<input id="inputEmail" name="email" class="form-control wid" type="text" required></input>
+								</div>			
+							</div>
+						</div>
+						<div class="col-md-4">
+							
+							<div>
+								<label for="inputAccess" class="form-label">Подтвердите адрес электронной почты</label>
+								<input id="inputAccess" name="access" class="form-control wid" type="text" required></input>
+							</div>		
+						
+						</div>
+						<!-- <div class="col-md-4">
+							<div>
+								<div>
+									<label for="inputNumber" class="form-label">Контактный номер</label>
+									<input id="inputNumber" name="number" class="form-control wid" type="text" required></input>
+								</div>			
+							</div>
+							
+						</div> -->
+						<div class="help-block">
+								Ответ на Ваше обращение либо уведомление о его переадресации будут направлены в форме электронного документа по указанному адресу электронной почты.			
+						</div>
+					</div>	
+					<div class="row form-group">
+						<div class="col-md-7">
+							<div class="form-check">
+					            <input type="checkbox" name="processPersonData" class="form-check-input" required>
+					            <label class="form-check-label">Я согласен(а) на обработку моих персональных данных.</label>
+					        </div>
+						</div>					
+					</div>
+					<hr class="form-group">
+					<div  style="display: flex; flex-direction: column; max-width: 100%; align-items: center;">
+						<button class="btn btn-success mt-3" type="submit" style="width: 200px; background-color: #d91842;">
+							Отправить
+						</button>
+					</div>   
+
+            </form>
+             </div>
+            
+        </div>
+
+       
+
+		<script>
+
+			document.getElementById('myForm').onsubmit = async (event) => {
+				event.preventDefault(); // Предотвращаем стандартное поведение формы
+	
+				const formData = new FormData(event.target);
+				const data = {};
+				formData.forEach((value, key) => {
+					data[key] = value;
+				});
+	
+				try {
+					const response = await fetch('/check-form', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify(data),
+					});
+	
+					// const result = await response.json();
+					// document.getElementById('response').innerText = result.message + ': ' + JSON.stringify(result.data);
+				} catch (error) {
+					console.error('Error:', error);
+				}
+			};
+		</script>
+    </body>
+</html>

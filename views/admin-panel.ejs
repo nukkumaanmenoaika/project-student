@@ -1,0 +1,570 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<link href='https://fonts.googleapis.com/css?family=Manrope' rel='stylesheet'>
+    	<style>
+			.first-row {
+				margin-top: 25px;
+			}
+			.nav-link {
+				color: black;
+			}
+			.nav-link:hover {
+				color: red;
+			}
+			.blockWork {
+				padding: 12px 20px;
+				border-radius: 5px;
+				border: 1px solid #e6e8eb;
+				margin-bottom: 15px;
+				display: block;
+				box-shadow: 0 0 18px 0 rgba(0,0,0,0.12) !important;
+			}
+			.container {
+				font-family: "Manrope",sans-serif;
+			}
+    		.card {
+			    background-color: #fff;
+			    padding: 24px 32px 34px;
+			    box-shadow: 0 30px 30px 0 rgba(51, 51, 51, .14);
+			    margin-bottom: 1rem;
+			    margin: 50px 400px 50px 400px; 
+			}
+
+			.dialogStl {
+				background-color: #fff;			    
+			    box-shadow: 0 30px 30px 0 rgba(51, 51, 51, .14);
+				border-width: 1px;	   
+				border-color: ghostwhite; 
+			}
+    		.header {
+    			background: #d91842;
+                font-family: "Manrope",sans-serif;
+			    color: white;
+			    max-width: 100%;
+			    width: 100%;
+			    height: 70px;
+	    	}
+    		p {
+			    font-family: "Montserrat", sans-serif;
+			    width: 350px;
+    		}
+    		
+    		.container {
+    			max-width: 100%;
+    		}
+			#myTab {
+				margin-bottom: 15px;
+			}
+			img {
+				height: 200px;
+				width: 200px;
+				align-self: end;
+			}
+			.btn-add {
+				display: flex; flex-direction: column; max-width: 100%; align-items: end; margin-bottom: 25px;
+			}
+			.btn-edit button {
+				display: flex; flex-direction: row; background-color: #d91842;
+			}
+			.btn-access {
+				display: flex; flex-direction: column; max-width: 100%; align-items: center; margin-bottom: 10px;
+			}
+			.invalid-feedback {
+            	display: none; /* Скрыть по умолчанию */
+	        }
+	        .form-control:invalid {
+	            border-color: #dc3545; /* Красная рамка для невалидных полей */
+	            border-radius: 10px;
+	        }
+	        .form-control:invalid ~ .invalid-feedback {
+	            display: block; /* Показать сообщение об ошибке */
+	        }
+	        .form-control:valid {
+	            border-color: #28a745; /* Зеленая рамка для валидных полей */
+	            border-width: 2px;
+	        }
+
+			@media screen and (max-width: 1580px){
+				.card  {
+					margin: 50px 200px 50px 200px; 
+				}
+			}
+
+			@media screen and (max-width: 1000px){
+				.card  {
+					margin: 50px 100px 50px 100px; 
+				}
+			}
+
+			@media screen and (max-width: 850px){
+				.card  {
+					margin: 50px 10px 50px 10px; 
+				}
+			}
+			@media screen and (max-width: 400px){
+				img {
+					height: 100px;
+					width: 100px;
+					align-self: end;
+				}
+			}
+			
+    	</style>
+	</head>
+	 <body>
+	 	<header>
+	 		<div class="header">
+				<div class="text-center fs-1">Панель управления</div>
+			</div>
+	 	</header>
+        <div class="container wrapper">       	 
+             <div class="card card_page">
+					<img src="https://chita.top-academy.ru/dist/images/logo/step_logo_rus.svg">
+             		<hr class="form-group">
+             		<h4 class="form-title">Меню инструментов</h4>
+					<hr class="form-group">
+					<div class="row form-group">	
+						<ul class="nav nav-tabs" id="myTab" role="tablist">
+					        <li class="nav-item">
+					            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Обращения</a>
+					        </li>
+							<% if (user.statusid == 1) { %>
+								<li class="nav-item">
+									<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Пользователи</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Сотрудники</a>
+								</li>
+							<% } %>					        
+					    </ul>
+
+					    <!-- Содержимое табов -->
+					    <div class="tab-content" id="myTabContent">
+					        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+								<% studMessage.forEach(function(message) { %>
+									<details class="blockWork">
+										<summary>
+											<%= message.id %>. 
+											<strong>ФИО: </strong>
+											<%= message.name %>
+											<%= message.surname %>
+											<%= message.patronymic %>
+											<strong>Тема: </strong><%= message.theme %>
+										</summary>	
+										<br><span><strong>Group:</strong> <%= message.groupStud %></span><br>
+										<span><strong>Email:</strong> <%= message.email %></span><br>
+										<span><strong>Message:</strong> <%= message.message %></span>
+										<form id="myForm" method="post" style="margin-top: 15px;" action="/check-message">
+											<input type="hidden" name="theme" value="<%= message.theme %>">
+                    						<input type="hidden" name="email" value="<%= message.email %>">
+											<label for="id_message">Ваш ответ:<span class="required-field" aria-hidden="true"></span></label>
+											<textarea name="message" id="id_message" maxlength="10000" class="form-control"  style="height: 200px;" required></textarea>
+											<div  style="display: flex; flex-direction: column; max-width: 100%; align-items: center;">
+												<button class="btn btn-success mt-3" type="submit" style="width: 200px; background-color: #d91842;">
+													Отправить
+												</button>
+											</div>
+										</form>											
+									</details>	
+								<% }); %>
+					        </div>
+					        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+								<div  class="btn-add">
+									<button class="btn btn-success mt-3" onclick="overlayMenuUser.showModal()" type="button" style="width: 150px; background-color: #d91842;">
+										Добавить
+									</button>										
+								</div>
+								<dialog class="dialogStl" id="overlayMenuUser">		
+									<form id="formAddUser" method="post" action="/add-user">	
+										<div class="row form-group">
+											<div class="col-md-4">
+												<div>
+													<div>
+														<label for="inputEmail" class="form-label">Логин</label>
+														<input id="inputEmail" name="login" class="form-control wid" type="text" required></input>
+													</div>			
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div>
+													<label for="inputAccess" class="form-label">Пароль</label>
+													<input id="inputAccess" name="password" class="form-control wid" type="text" required></input>
+												</div>	
+											</div>
+											<div class="col-md-4">
+												<div>
+													<div>
+														<label for="inputEmail" class="form-label">Идентификатор сотрудника</label>
+														<input id="inputEmail" name="employeeID" class="form-control wid" type="text" required></input>
+													</div>			
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div>
+													<div>
+														<label for="inputNumber" class="form-label">Статус</label>
+														<input id="inputNumber" name="statusid" class="form-control wid" type="text" required></input>
+													</div>			
+												</div>			
+											</div>							
+										</div>	
+										
+										<div class="btn-access">
+											<button class="btn btn-success mt-3"   type="submit" style="width: 150px; background-color: #d91842;">
+												Добавить
+											</button>
+											<button class="btn btn-success mt-3"  type="button" onclick="document.getElementById('overlayMenuUser').close()"  style="width: 150px; background-color: #d91842;">
+												Отмена
+											</button>								
+										</div>										
+									</form>					
+								</dialog>
+								<div id="UsersDB">
+									<% employees.forEach(function(employee) { %>
+										<details class="blockWork">
+											<summary>
+												<%= employee.id %>.
+												<strong>ФИО: </strong>
+												<%= employee.surname %>
+												<%= employee.name %>
+												<%= employee.patronymic %>
+											</summary>	
+											<br><span><strong>Адрес: </strong><%= employee.address %></span><br>
+											<span><strong>Должность: </strong><%= employee.role %></span><br>
+											<span><strong>Email: </strong><%= employee.email %></span><br>
+											<% userEmployee.forEach(function(user) { %>
+												<% if (user.employeeID == employee.id) { %>
+													<hr class="form-group">
+													<span><strong>Логин: </strong><%= user.login %> </span>
+													<span><strong>Пароль: </strong><%= user.password %> </span>	
+													<div  class="btn-edit">				
+														<button class="btn btn-success mt-3" type="button" onclick="deleteUser(`<%= user.id %>`)" >
+															Удалить
+														</button>
+													</div>
+													<hr class="form-group">										
+												<% } %>	
+											<% }); %>	
+																			
+										</details>							
+									<% }); %>
+								</div>						
+					        </div>
+					        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">	
+									
+								<div class="btn-add">
+									<button class="btn btn-success mt-3" onclick="overlayMenu.showModal()"  type="button" style="width: 150px; background-color: #d91842;">
+										Добавить
+									</button>																				
+								</div>	
+								<dialog class="dialogStl" id="overlayMenu">		
+									<form id="formAddEmployee" method="post" action="/add-employee">	
+										<div class="row form-group">
+											<div class="col-md-4">
+												<div>
+													<div>
+														<label for="inputEmail" class="form-label">Фамилия</label>
+														<input id="inputEmail" name="surname" class="form-control wid" type="text" required></input>
+													</div>			
+												</div>
+											</div>
+											<div class="col-md-4">
+												
+												<div>
+													<label for="inputAccess" class="form-label">Имя</label>
+													<input id="inputAccess" name="name" class="form-control wid" type="text" required></input>
+												</div>		
+											
+											</div>
+											<div class="col-md-4">
+												<div>
+													<div>
+														<label for="inputNumber" class="form-label">Отчество</label>
+														<input id="inputNumber" name="patronymic" class="form-control wid" type="text" required></input>
+													</div>			
+												</div>
+												
+											</div>								
+										</div>	
+										<div class="row form-group">
+											<div class="col-md-4">
+												<div>
+													<div>
+														<label for="inputEmail" class="form-label">Почта</label>
+														<input id="inputEmail" name="email" class="form-control wid" type="text" required></input>
+													</div>			
+												</div>
+											</div>
+											<div class="col-md-4">
+												
+												<div>
+													<label for="inputAccess" class="form-label">Должность</label>
+													<input id="inputAccess" name="role" class="form-control wid" type="text" required></input>
+												</div>		
+											
+											</div>
+											<div class="col-md-4">
+												<div>
+													<div>
+														<label for="inputNumber" class="form-label">Адрес</label>
+														<input id="inputNumber" name="address" class="form-control wid" type="text" required></input>
+													</div>			
+												</div>
+												
+											</div>								
+										</div>	
+										<div class="btn-access">
+											<button class="btn btn-success mt-3"   type="submit" style="width: 150px; background-color: #d91842;">
+												Добавить
+											</button>
+											<button class="btn btn-success mt-3"  type="button" onclick="document.getElementById('overlayMenu').close()"  style="width: 150px; background-color: #d91842;">
+												Отмена
+											</button>									
+										</div>										
+									</form>					
+								</dialog>	
+								<div id="EmployeeDB">
+									<% employees.forEach(function(employee) { %>
+										<details class="blockWork">
+											<summary>
+												<%= employee.id %>.
+												<strong>ФИО: </strong> 
+												<%= employee.surname %>
+												<%= employee.name %>
+												<%= employee.patronymic %>
+											</summary>	
+											<br><span><strong>Адрес:</strong> <%= employee.address %></span><br>
+											<span><strong>Должность:</strong> <%= employee.role %></span><br>
+											<span><strong>Email:</strong> <%= employee.email %></span><br>									
+											<div  class="btn-edit">				
+												<button class="btn btn-success mt-3" type="button" onclick="deleteEmployee(`<%= employee.id %>`)">
+													Удалить
+												</button>
+											</div>																
+										</details>	
+									<% }); %>	
+								</div>
+								
+									
+					        </div>
+					    </div>
+					</div>
+	                 	
+	             </div>
+            
+        </div>
+
+        	
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<script>
+			document.getElementById('formAddEmployee').onsubmit = async (event) => {
+				event.preventDefault(); // Предотвращаем стандартное поведение формы
+	
+				const formData = new FormData(event.target);
+				const data = {};
+				formData.forEach((value, key) => {
+					data[key] = value;
+				});
+	
+				try {
+					const response = await fetch('/add-employee', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify(data),
+					});
+					
+					const updatedUsers = await response.json();
+            		updateEmployeeList(updatedUsers);
+					updateUserList(updatedUsers)
+					// const result = await response.json();
+					// document.getElementById('response').innerText = result.message + ': ' + JSON.stringify(result.data);
+				} catch (error) {
+					console.error('Error:', error);
+				}
+			};
+
+			document.getElementById('myForm').onsubmit = async (event) => {
+				event.preventDefault(); // Предотвращаем стандартное поведение формы
+	
+				const formData = new FormData(event.target);
+				const data = {};
+				formData.forEach((value, key) => {
+					data[key] = value;
+				});
+	
+				try {
+					const response = await fetch('/check-message', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify(data),
+					});
+					
+					// const result = await response.json();
+					// document.getElementById('response').innerText = result.message + ': ' + JSON.stringify(result.data);
+				} catch (error) {
+					console.error('Error:', error);
+				}
+			};
+
+			document.getElementById('formAddUser').onsubmit = async (event) => {
+				event.preventDefault(); // Предотвращаем стандартное поведение формы
+	
+				const formData = new FormData(event.target);
+				const data = {};
+				formData.forEach((value, key) => {
+					data[key] = value;
+				});
+	
+				try {
+					const response = await fetch('/add-user', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify(data),
+					});
+					
+					const updatedUsers = await response.json();
+            		updateUserList(updatedUsers);
+					// const result = await response.json();
+					// document.getElementById('response').innerText = result.message + ': ' + JSON.stringify(result.data);
+				} catch (error) {
+					console.error('Error:', error);
+				}
+			};
+
+
+			async function deleteEmployee(userId) {
+					event.preventDefault(); // Предотвращаем стандартное поведение формы
+					
+					const response = await fetch(`/delete-employee/${userId}`, {
+						method: 'DELETE',
+						headers: {
+							'Content-Type': 'application/json', // Устанавливаем тип содержимого
+						}						
+					});
+					if (response.ok) {
+						const result = await response.json();
+						// alert(result.message);	
+            			updateEmployeeList(result);
+						updateUserList(result);
+					} else {
+						const error = await response.json();
+						alert('Ошибка: ' + error.error);
+					}
+			};
+
+			async function deleteUser(userId) {
+					event.preventDefault(); // Предотвращаем стандартное поведение формы
+					
+					const response = await fetch(`/delete-user/${userId}`, {
+						method: 'DELETE',
+						headers: {
+							'Content-Type': 'application/json', // Устанавливаем тип содержимого
+						}						
+					});
+					if (response.ok) {
+						const result = await response.json();
+						// alert(result.message);	
+            			updateUserList(result);
+					} else {
+						const error = await response.json();
+						alert('Ошибка: ' + error.error);
+					}
+			};
+
+			function updateUserList(array) {
+
+				console.log(array)
+				var userListContainer = document.getElementById('UsersDB');
+				userListContainer.innerHTML = ''; // Очищаем текущее содержимое
+				array.employees.forEach(function(employee) {
+					var userDetails = 
+						'<details class="blockWork">' +
+							'<summary>' +
+								employee.id + '. ' +
+								'<strong>ФИО: </strong>' +
+								employee.surname + ' ' + employee.name + ' ' + employee.patronymic +
+							'</summary>'+
+							'<br><span><strong>Адрес: </strong>' + employee.address + '</span><br>' +
+							'<span><strong>Должность: </strong>' + employee.role + '</span><br>' + 
+							'<span><strong>Email: </strong>' + employee.email + '</span><br>' +
+							'<hr class="form-group">' 
+
+					// Флаг для проверки, есть ли у пользователя сотрудники					
+					
+					array.users.forEach(function(user) {
+						// Проверяем, соответствует ли employee.employeeID текущему user.id
+						if (user.employeeID == employee.id) {
+							userDetails += 
+								'<span><strong>Логин: </strong>' + user.login + '</span><br>' +
+								'<span><strong>Пароль: </strong>' + user.password + '</span>' + 
+								'<div class="btn-edit">' +		
+									'<button class="btn btn-success mt-3" type="submit" onclick="deleteUser(`' + user.id + '`)">' +
+										'Удалить' +
+									'</button>' +
+								'</div>' + '<hr class="form-group">' + 
+								'</details>';
+						}
+						
+					});
+					// Если у пользователя нет сотрудников, добавляем сообщение
+					// if (!hasEmployees) {
+					// 	userDetails += '<br><span>Нет сотрудников</span>';
+					// }
+					
+					// Добавляем детали пользователя в контейнер
+					userListContainer.insertAdjacentHTML('beforeend', userDetails);
+				});
+						}
+
+
+
+
+
+			function updateEmployeeList(array) {
+				var userListContainer = document.getElementById('EmployeeDB');
+				userListContainer.innerHTML = ''; // Очищаем текущее содержимое
+
+				array.employees.forEach(function(employee) {
+					var userDetails = 
+						'<details class="blockWork">' +
+							'<summary>' + employee.id + '. ' + '<strong>ФИО: </strong>' + employee.surname + ' ' + employee.name + ' ' + employee.patronymic + '</summary>' +											
+								'<br><span><strong>Адрес:</strong>' + employee.address + '</span><br>' +											
+								'<span><strong>Должность:</strong>' + employee.role + '</span><br>' +
+								'<span><strong>Email:</strong>' + employee.email + '</span><br>'																		
+					
+					userDetails += 
+						'<div class="btn-edit">' +
+							'<button class="btn btn-success mt-3" type="submit" onclick="deleteEmployee(`' + employee.id + '`)">' +
+								'Удалить' +
+							'</button>' +
+						'</div>' +
+						'</details>';
+					// Добавляем детали пользователя в контейнер
+					userListContainer.insertAdjacentHTML('beforeend', userDetails);
+				});
+			}
+
+					
+			</script>
+		
+	    </body>
+</html>
+
+
